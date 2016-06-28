@@ -376,10 +376,6 @@ style="@style/TextAppearance.AppCompat.Caption"
 style="@style/TextAppearance.AppCompat.Button"
 ```
 
-文／Jude95（简书作者）
-原文链接：http://www.jianshu.com/p/d9e4ddd1c530
-著作权归作者所有，转载请联系作者获得授权，并标注“简书作者”。
-
 ## 5、 其他规范
 * Activity继承BaseFragmentActivity或SwipeBackActivity，可以使用ButterKnife注解代替findViewById
 * 方法
