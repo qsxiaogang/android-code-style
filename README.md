@@ -360,6 +360,26 @@ drawXXX()	| 绘制数据或效果相关的，使用draw前缀标识
 当保持引他们的Activity，而不是被绑定到ApplicationContext中的时候。
 当使用简单的文字或按钮时，避免使用WebView，这时使用TextView或Buttons更好。
 
+#### TextView使用官方标准字体
+![TextView使用官方标准字体](http://upload-images.jianshu.io/upload_images/680540-b1d797b5545bbfe2.png?imageMogr2/auto-orient/strip%7CimageView2/2)
+```xml
+style="@style/TextAppearance.AppCompat.Display4"
+style="@style/TextAppearance.AppCompat.Display3"
+style="@style/TextAppearance.AppCompat.Display2"
+style="@style/TextAppearance.AppCompat.Display1"
+style="@style/TextAppearance.AppCompat.Headline"
+style="@style/TextAppearance.AppCompat.Title"
+style="@style/TextAppearance.AppCompat.Subhead"
+style="@style/TextAppearance.AppCompat.Body2"
+style="@style/TextAppearance.AppCompat.Body1"
+style="@style/TextAppearance.AppCompat.Caption"
+style="@style/TextAppearance.AppCompat.Button"
+```
+
+文／Jude95（简书作者）
+原文链接：http://www.jianshu.com/p/d9e4ddd1c530
+著作权归作者所有，转载请联系作者获得授权，并标注“简书作者”。
+
 ## 5、 其他规范
 * Activity继承BaseFragmentActivity或SwipeBackActivity，可以使用ButterKnife注解代替findViewById
 * 方法
