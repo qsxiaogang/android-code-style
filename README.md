@@ -1,3 +1,7 @@
+# 请提前阅读Material Design
+material-design [英文原版](https://material.google.com/)
+
+material-design [中文版](http://wiki.jikexueyuan.com/project/material-design/)
 ## 1、IDE工具：
 首推使用[Android Studio](https://developer.android.com/sdk/installing/studio.html),因为他是由谷歌开发，最接近Gradle，默认使用最新的工程结构，已经到release阶段（目前已经有release 2.2了），它就是为Android开发定制的。
 **并使用**[`Square's Java and Android projects code style settings`](https://github.com/square/java-code-styles)作为`code style`。
