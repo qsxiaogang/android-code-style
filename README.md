@@ -4,6 +4,7 @@ material-design [英文原版](https://material.google.com/)
 material-design [中文版](http://wiki.jikexueyuan.com/project/material-design/)
 
 **参考资料**
+
 1)、https://github.com/ribot/android-guidelines
 
 ## 1、IDE工具：
