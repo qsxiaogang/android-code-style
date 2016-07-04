@@ -411,3 +411,6 @@ style="@style/TextAppearance.AppCompat.Button"
 * 用好TODO标记
 	* 记录想法，记录功能点，开发过程中可以利用TODO记录一下临时想法或为了不打扰思路留下待完善的说明
 	* 删除无用TODO，开发工具自动生成的TODO，或则已经完善的TODO，一定要删除。
+
+## 6、参考资料
+https://github.com/ribot/android-guidelines
