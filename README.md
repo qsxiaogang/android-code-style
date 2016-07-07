@@ -116,7 +116,7 @@ Include		| include_
 Dialog		| dialog_
 PopupWindow	| popup_
 Menu		| menu_
-Adapter		| recycle_item_
+Adapter		| recycler_item_
 
 ### 3.3. 资源文件命名
 
