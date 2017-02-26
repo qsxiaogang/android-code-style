@@ -1,4 +1,5 @@
-# 请提前阅读Material Design
+#车厘子移动小组 - Android 编码规范
+## 请提前阅读Material Design
 material-design [英文原版](https://material.google.com/)
 
 material-design [中文版](http://wiki.jikexueyuan.com/project/material-design/)
@@ -80,7 +81,7 @@ dependencies {
 }
 ```
 
-## 3、 命名
+## 3、命名
 
 ### 3.1. 布局文件中的id命名
 
@@ -385,7 +386,72 @@ style="@style/TextAppearance.AppCompat.Caption"
 style="@style/TextAppearance.AppCompat.Button"
 ```
 
-## 5、 其他规范
+## 5、项目结构
+如果项目比较小的话：
+
+- app——Application Activity Fragment Presenter等的顶级父类
+- config——API,常量表等
+- model——数据层
+- entities——数据模型
+- presenter——MVP的P
+- view——MVP的V
+- utils——工具类集合
+- widget——各个可复用View集合
+
+如果项目比较大，上面的方式一定会造成presenter和view里近百个文件。
+推荐下列方式：
+
+- app
+- config
+- model
+  - entities
+- module——将界面层以功能模块分配包。
+  - launch
+  - main
+  - account
+  - news
+  - music
+  - ……
+- utils
+- widget
+
+#6、配置主题
+
+##6.1 先在color.xml中写好需要的颜色：
+
+    <resources>
+    <color name="Orange">#ff5722</color>
+    <color name="DeepPurple">#673AB7</color>
+    <color name="DeepPurple900">#311B92</color>
+    <color name="White">#fff</color>
+    <color name="Gray">#888888</color>
+    <color name="Gray100">#dddddd</color>
+    <color name="Gray600">#999999</color>
+    </resources>
+
+注意color.xml是配色表。应该是描述颜色而不是对字体颜色，背景颜色等的定义。这样能防止相近的颜色重复定义，而导致界面颜色不统一。
+
+##6.2 在style.xml里定义主题：
+
+    <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+    <!-- Customize your theme here. -->
+    <item name="colorPrimary">@color/DeepPurple</item>
+    <item name="colorPrimaryDark">@color/DeepPurple900</item>
+    <item name="colorAccent">@color/Orange</item>
+    </style>
+    
+    <style name="AppTheme" parent="AppTheme.Base"></style>
+
+在res目录下，创建一个values-v21目录，再创建一个style.xml:
+
+    <style name="AppTheme" parent="AppTheme.Base">
+    <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+    <item name="android:statusBarColor">?colorPrimaryDark</item>
+    </style>
+
+然后在AndroidManifest.xml文件中修改application的theme属性为上面定义的AppTheme，即可实现沉浸式状态栏。
+
+## 7、 其他规范
 * Activity继承BaseFragmentActivity或SwipeBackActivity，可以使用ButterKnife注解代替findViewById
 * 方法
 	* 拆分臃肿方法，每个方法只作一件事
@@ -416,5 +482,42 @@ style="@style/TextAppearance.AppCompat.Button"
 * 用好TODO标记
 	* 记录想法，记录功能点，开发过程中可以利用TODO记录一下临时想法或为了不打扰思路留下待完善的说明
 	* 删除无用TODO，开发工具自动生成的TODO，或则已经完善的TODO，一定要删除。
+
+##8、写在最后
+* 什么是架构
+软件架构绝对不只是框架的堆砌，架构是为了方便软件可维护、可扩展、安全性、易理解。
+
+##9、附录A
+**软件设计六大原则：**
+
+ - 单一职责原则 - Single Responsibility Principle
+应该有且仅有一个原因引起类的变更。（如果类需要变更，那么只可能仅由某一个原因引起）
+
+ - 里氏替换原则 - Liskov Substitution Principle
+所有引用基类的地方，都能透明地替换成其子类对象。只要父类能出现的地方，子类就可以出现。
+
+ - 依赖倒置原则 - Dependence Inversion Principle:
+即“面向接口编程”：
+高层模块不应该依赖低层模块，两者都应该依赖其抽象；——模块间的依赖通过抽象发生。实现类之间不发生直接的依赖关系（eg. 类B被用作类A的方法中的参数），其依赖关系是通过接口或抽象类产生的；
+抽象不应该依赖细节；——接口或抽象类不依赖于实现类；
+细节应该依赖抽象；——实现类依赖接口或抽象类。
+
+ - 接口隔离原则 - Interface Segregation Principle
+客户端只依赖于它所需要的接口；它需要什么接口就提供什么接口，把不需要的接口剔除掉。
+——类间的依赖关系应建立在最小的接口上。
+即，接口尽量细化，接口中的方法尽量少。
+
+ - 迪米特法则 - Law of Demeter
+又称最少知识原则（Least Knowledge Principle），一个对象应该对其他对象有最少的了解。
+一个类对自己依赖的类知道的越少越好。也就是说，对于被依赖的类来说，无论逻辑多么复杂，都尽量地的将逻辑封装在类的内部，对外除了提供的public方法，不对外泄漏任何信息。
+
+ - 开闭原则 -Open Closed Principle
+对扩展开放，对修改关闭。一个软件实体应该通过扩展来实现变化，而不是通过修改已有代码来实现变化。
+一个软件实体应该通过扩展来实现变化，而不是通过修改已有的代码来实现变化。——but，并不意味着不做任何修改；底层模块的扩展，必然要有高层模块进行耦合。
+“变化”可分为三种类型：
+逻辑变化——不涉及其他模块，可修改原有类中的方法；
+子模块变化——会对其他模块产生影响，通过扩展来完成变化；
+可见视图变化——界面变化，有时需要通过扩展来完成变化。
+
 
 
