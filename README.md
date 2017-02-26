@@ -209,7 +209,7 @@ drawXXX()	| 绘制数据或效果相关的，使用draw前缀标识
 **使用styles** 几乎每个项目都需要适当的使用style文件，因为对于一个视图来说有一个重复的外观是很常见的。
 在应用中对于大多数文本内容，最起码你应该有一个通用的style文件，例如：
 
-```xml
+```groovy
 <style name="ContentText">
 	<item name="android:textSize">@dimen/font_normal</item>
 	<item name="android:textColor">@color/basic_black</item>
@@ -218,7 +218,7 @@ drawXXX()	| 绘制数据或效果相关的，使用draw前缀标识
 
 应用到TextView 中:
 
-```xml
+```groovy
 <TextView
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content"
@@ -240,7 +240,7 @@ drawXXX()	| 绘制数据或效果相关的，使用draw前缀标识
 
 *不要这样做*
 
-```xml
+```groovy
 <resources>
 	<color name="button_foreground">#FFFFFF</color>
 	<color name="button_background">#2A91BD</color>
@@ -259,7 +259,7 @@ drawXXX()	| 绘制数据或效果相关的，使用draw前缀标识
 
 ***相反，这样做:***
 
-```xml
+```groovy
 <resources>
 
 	<!-- grayscale -->
@@ -288,7 +288,7 @@ drawXXX()	| 绘制数据或效果相关的，使用draw前缀标识
 **像对待colors.xml一样对待dimens.xml文件** 与定义颜色调色板一样，你同时也应该定义一个空隙间隔和字体大小的“调色板”。
 一个好的例子，如下所示：
 
-```xml
+```groovy
 <resources>
 
 	<!-- font sizes -->
@@ -317,7 +317,7 @@ drawXXX()	| 绘制数据或效果相关的，使用draw前缀标识
 
 **避免深层次的视图结构** 有时候为了摆放一个视图，你可能尝试添加另一个LinearLayout。你可能使用这种方法解决：
 
-```xml
+```groovy
 <LinearLayout
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
@@ -372,7 +372,7 @@ drawXXX()	| 绘制数据或效果相关的，使用draw前缀标识
 
 #### TextView使用官方标准字体
 ![TextView使用官方标准字体](http://upload-images.jianshu.io/upload_images/680540-b1d797b5545bbfe2.png?imageMogr2/auto-orient/strip%7CimageView2/2)
-```xml
+```groovy
 style="@style/TextAppearance.AppCompat.Display4"
 style="@style/TextAppearance.AppCompat.Display3"
 style="@style/TextAppearance.AppCompat.Display2"
@@ -419,6 +419,7 @@ style="@style/TextAppearance.AppCompat.Button"
 
 ##6.1 先在color.xml中写好需要的颜色：
 
+```groovy
     <resources>
     <color name="Orange">#ff5722</color>
     <color name="DeepPurple">#673AB7</color>
@@ -428,11 +429,12 @@ style="@style/TextAppearance.AppCompat.Button"
     <color name="Gray100">#dddddd</color>
     <color name="Gray600">#999999</color>
     </resources>
+```
 
 注意color.xml是配色表。应该是描述颜色而不是对字体颜色，背景颜色等的定义。这样能防止相近的颜色重复定义，而导致界面颜色不统一。
 
 ##6.2 在style.xml里定义主题：
-
+```groovy
     <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
     <!-- Customize your theme here. -->
     <item name="colorPrimary">@color/DeepPurple</item>
@@ -441,14 +443,14 @@ style="@style/TextAppearance.AppCompat.Button"
     </style>
     
     <style name="AppTheme" parent="AppTheme.Base"></style>
-
+```
 在res目录下，创建一个values-v21目录，再创建一个style.xml:
-
+```groovy
     <style name="AppTheme" parent="AppTheme.Base">
     <item name="android:windowDrawsSystemBarBackgrounds">true</item>
     <item name="android:statusBarColor">?colorPrimaryDark</item>
     </style>
-
+```
 然后在AndroidManifest.xml文件中修改application的theme属性为上面定义的AppTheme，即可实现沉浸式状态栏。
 
 ## 7、 其他规范
@@ -491,27 +493,33 @@ style="@style/TextAppearance.AppCompat.Button"
 **软件设计六大原则：**
 
  - 单一职责原则 - Single Responsibility Principle
+
 应该有且仅有一个原因引起类的变更。（如果类需要变更，那么只可能仅由某一个原因引起）
 
  - 里氏替换原则 - Liskov Substitution Principle
+
 所有引用基类的地方，都能透明地替换成其子类对象。只要父类能出现的地方，子类就可以出现。
 
  - 依赖倒置原则 - Dependence Inversion Principle:
+
 即“面向接口编程”：
 高层模块不应该依赖低层模块，两者都应该依赖其抽象；——模块间的依赖通过抽象发生。实现类之间不发生直接的依赖关系（eg. 类B被用作类A的方法中的参数），其依赖关系是通过接口或抽象类产生的；
 抽象不应该依赖细节；——接口或抽象类不依赖于实现类；
 细节应该依赖抽象；——实现类依赖接口或抽象类。
 
  - 接口隔离原则 - Interface Segregation Principle
+
 客户端只依赖于它所需要的接口；它需要什么接口就提供什么接口，把不需要的接口剔除掉。
 ——类间的依赖关系应建立在最小的接口上。
 即，接口尽量细化，接口中的方法尽量少。
 
  - 迪米特法则 - Law of Demeter
+
 又称最少知识原则（Least Knowledge Principle），一个对象应该对其他对象有最少的了解。
 一个类对自己依赖的类知道的越少越好。也就是说，对于被依赖的类来说，无论逻辑多么复杂，都尽量地的将逻辑封装在类的内部，对外除了提供的public方法，不对外泄漏任何信息。
 
  - 开闭原则 -Open Closed Principle
+
 对扩展开放，对修改关闭。一个软件实体应该通过扩展来实现变化，而不是通过修改已有代码来实现变化。
 一个软件实体应该通过扩展来实现变化，而不是通过修改已有的代码来实现变化。——but，并不意味着不做任何修改；底层模块的扩展，必然要有高层模块进行耦合。
 “变化”可分为三种类型：
